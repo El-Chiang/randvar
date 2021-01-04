@@ -1,5 +1,5 @@
 # Randvar
-English | [简体中文]()
+English | [简体中文](https://github.com/El-Chiang/randvar/blob/main/README.zh-CN.md)
 
 A convenient variable name generator extension which can convert your Chinese text to English variable name. 👍🏻
 
