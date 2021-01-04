@@ -1,0 +1,109 @@
+{
+  "name": "randvar",
+  "displayName": "randvar",
+  "description": "A convenient variable name generator plugin",
+  "version": "1.0.4",
+  "author": {
+    "name": "ElChiang",
+    "email": "junyu.junyujiang@alibaba-inc.com"
+  },
+  "publisher": "ElChiang",
+  "repository": {
+    "type": "git",
+    "url": "git+http://gitlab.alibaba-inc.com/junyu.junyujiang/randvar.git"
+  },
+  "license": "MIT",
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.48.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:randvar.start",
+    "onCommand:randvar.convertVariableName",
+    "onCommand:randvar.convertVariableNamePreferred",
+    "onCommand:randvar.setPreferredNamingRule",
+    "onCommand:randvar.setPreferredTranslator"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "randvar.start",
+        "title": "Randvar: start"
+      },
+      {
+        "command": "randvar.convertVariableName",
+        "title": "Randvar: convert to variable name"
+      },
+      {
+        "command": "randvar.convertVariableNamePreferred",
+        "title": "Randvar: convert to variable name from your preferred config"
+      },
+      {
+        "command": "randvar.setPreferredNamingRule",
+        "title": "Randvar: set your preferred naming rule"
+      },
+      {
+        "command": "randvar.setPreferredTranslator",
+        "title": "Randvar: set your preferred translator"
+      }
+    ],
+    "configuration": {
+      "title": "Randvar Variable Name Convertor",
+      "type": "object",
+      "properties": {
+        "randvar.preferredTranslator": {
+          "type": "string",
+          "enum": [
+            "Baidu",
+            "Google"
+          ],
+          "description": "The preferred translation tools"
+        },
+        "randvar.preferredNamingRule": {
+          "type": "string",
+          "enum": [
+            "Camelcase",
+            "Snakecase"
+          ],
+          "description": "The preferred naming rule of variable"
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "key": "alt+shift+r",
+        "when": "editorTextFocus",
+        "command": "randvar.convertVariableNamePreferred"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "package": "vsce package",
+    "publish": "vsce publish",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.48.0",
+    "@types/glob": "^7.1.3",
+    "@types/mocha": "^8.0.0",
+    "@types/node": "^14.0.27",
+    "eslint": "^7.6.0",
+    "glob": "^7.1.6",
+    "mocha": "^8.0.1",
+    "typescript": "^3.8.3",
+    "vscode-test": "^1.4.0"
+  },
+  "dependencies": {
+    "axios": "^0.20.0",
+    "camelcase": "^6.0.0",
+    "google-translate-open-api": "^1.3.4",
+    "humanize-string": "^2.1.0",
+    "snake-case": "^3.0.3"
+  }
+}
